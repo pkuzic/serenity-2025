@@ -163,4 +163,3 @@
 		if(user)
 			to_chat(user, "\The [src]'s seat is down!")
 		return 0
-	return ..(user)
