@@ -100,7 +100,8 @@ LINEN BINS
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "linenbin-full"
 	anchored = 1
-	var/amount = 20
+	var/amount = 15
+	var/full_amount = 20 //not prevent overfill
 	var/list/sheets = list()
 	var/obj/item/hidden = null
 
@@ -118,10 +119,12 @@ LINEN BINS
 
 
 /obj/structure/bedsheetbin/update_icon()
-	switch(amount)
-		if(0)				icon_state = "linenbin-empty"
-		if(1 to amount / 2)	icon_state = "linenbin-half"
-		else				icon_state = "linenbin-full"
+	if(amount <= 0)
+		icon_state = "linenbin-empty"
+	else if(amount < full_amount/2)
+		icon_state = "linenbin-half"
+	else
+		icon_state = "linenbin-full"
 
 
 /obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
